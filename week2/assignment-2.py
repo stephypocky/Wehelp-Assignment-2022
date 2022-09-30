@@ -1,16 +1,14 @@
 def calculate(min, max, step):
-    n = min+step
-    result = min+n+max
-    result2 = min+n
-    if n+step <= max:
-        print(result)
-    if n+step > max:
-        print(result2)
+    result = 0
+    for i in range(min, max+1, step):
+
+        result = result+i
+    print(result)
 
 
-calculate(1, 3, 1)
-calculate(4, 8, 2)
-calculate(-1, 2, 2)
+calculate(1, 3, 1)  # 6
+calculate(4, 8, 2)  # 18
+calculate(-1, 2, 2)  # 0
 
 
 def avg(data):
