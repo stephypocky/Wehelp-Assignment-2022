@@ -50,66 +50,66 @@
                 fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json").then(function (response) {
                     return response.json();
                 }).then(function (data) {
-                    var div_1 = document.createElement('DIV');
-                    div_1.setAttribute('class', 'col');
+                    var col = document.createElement('DIV');
+                    col.setAttribute('class', 'col');
 
-                    var div_2 = document.createElement('DIV');
-                    div_2.setAttribute('class', 'col-line');
-                    div_1.appendChild(div_2);
+                    var colLine = document.createElement('DIV');
+                    colLine.setAttribute('class', 'col-line');
+                    col.appendChild(colLine);
 
 
                     for (let i = 0; i < 2; i++) {
-                        var div_3 = document.createElement('DIV');
-                        div_3.setAttribute('class', 'col-both');
-                        div_2.appendChild(div_3);
+                        var colBoth = document.createElement('DIV');
+                        colBoth.setAttribute('class', 'col-both');
+                        colLine.appendChild(colBoth);
 
-                        var div_4 = document.createElement('IMG');
-                        div_4.setAttribute('width', '80px');
-                        div_4.setAttribute('src', "https" + data.result.results[i].file.split("https")[1]);
-                        div_4.setAttribute('alt', '');
-                        div_3.appendChild(div_4);
+                        var img = document.createElement('IMG');
+                        img.setAttribute('width', '80px');
+                        img.setAttribute('src', "https" + data.result.results[i].file.split("https")[1]);
+                        img.setAttribute('alt', '');
+                        colBoth.appendChild(img);
 
-                        var div_5 = document.createElement('DIV');
-                        div_5.setAttribute('class', 'promotion');
-                        div_3.appendChild(div_5);
+                        var promotion = document.createElement('DIV');
+                        promotion.setAttribute('class', 'promotion');
+                        colBoth.appendChild(promotion);
 
-                        var div_6 = document.createTextNode((new String(data["result"]["results"][i]["stitle"])));
-                        div_5.appendChild(div_6);
+                        var title = document.createTextNode((new String(data["result"]["results"][i]["stitle"])));
+                        promotion.appendChild(title);
                     };
 
                     var content = document.querySelector("#content");
-                    content.appendChild(div_1);
+                    content.appendChild(col);
 
-                    var div_11 = document.createElement('DIV');
-                    div_11.setAttribute('class', 'card-all');
-                    div_2.appendChild(div_11);
+                    var cardAll = document.createElement('DIV');
+                    cardAll.setAttribute('class', 'card-all');
+                    colLine.appendChild(cardAll);
 
                     for (let i=2;i<10;i++){
-                        var div_12 = document.createElement('DIV');
-                        div_12.setAttribute('class', 'card');
-                        div_11.appendChild(div_12);
+                        var card = document.createElement('DIV');
+                        card.setAttribute('class', 'card');
+                        cardAll.appendChild(card);
 
-                        var div_13 = document.createElement('IMG');
-                        div_13.setAttribute('class', 'img');
-                        div_13.setAttribute('width', '276px');
-                        div_13.setAttribute('src', "https" + data.result.results[i].file.split("https")[1]);
-                        div_13.setAttribute('alt', '');
-                        div_12.appendChild(div_13);
+                        var img_2 = document.createElement('IMG');
+                        img_2.setAttribute('class', 'img');
+                        img_2.setAttribute('width', '276px');
+                        img_2.setAttribute('src', "https" + data.result.results[i].file.split("https")[1]);
+                        img_2.setAttribute('alt', '');
+                        card.appendChild(img_2);
 
-                        var div_14 = document.createElement('DIV');
-                        div_14.setAttribute('class', 'body');
-                        div_12.appendChild(div_14);
+                        var body = document.createElement('DIV');
+                        body.setAttribute('class', 'body');
+                        card.appendChild(body);
 
-                        var div_15 = document.createElement('P');
-                        div_14.appendChild(div_15);
+                        var bodyContent = document.createElement('P');
+                        body.appendChild(bodyContent);
 
-                        var div_16 = document.createTextNode((new String(data["result"]["results"][i]["stitle"])));
-                        div_15.appendChild(div_16);
+                        var bodyTitle = document.createTextNode((new String(data["result"]["results"][i]["stitle"])));
+                        bodyContent.appendChild(bodyTitle);
 
                     };
 
                     var content = document.querySelector("#content");
-                    content.appendChild(div_1);
+                    content.appendChild(col);
                         
                 });
             };
