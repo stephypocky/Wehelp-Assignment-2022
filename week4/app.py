@@ -4,6 +4,7 @@ from flask import render_template
 from flask import redirect
 from flask import session
 
+
 app = Flask(__name__)
 app.secret_key = '_5#y2L"F4Q8z\nc]/'
 
@@ -43,8 +44,21 @@ def error():
 
 @app.route("/signout/")
 def signout():
-    session.pop("account", session.clear())
+    session.pop("account", None)
     return redirect("/")
+
+
+@app.route("/square/")
+def calculate():
+    number = request.args.get("number", "0")
+    return redirect("/square/"+number)
+
+
+@app.route("/square/<int:number>")
+def square(number):
+    squareNumber = number**2
+    squareNumber = int(squareNumber)
+    return render_template("square.html", squareNumber=squareNumber)
 
 
 app.run(port=3000)
