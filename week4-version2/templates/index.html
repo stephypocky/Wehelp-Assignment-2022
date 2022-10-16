@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        * {
+           box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+        }
+        .header { 
+            background-color: rgb(151, 83, 46);
+            margin: 0px;
+            padding: 0px;
+            height:100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header-text {
+            align-items: center;
+            font-size: 40px;
+            color: rgb(248, 251, 254);
+         }
+        .form {
+            text-align: center;
+            
+         }
+        .form-title {
+            font-size: 30px;
+        }
+        .btn {
+            width: 90px;
+            height: 40px;
+            background-color:rgb(151, 83, 46);
+            color: rgb(248, 251, 254);
+            border:3px white double;
+            font-size: 16px;
+        }
+        .btn-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+
+    </style>
+
+<body>
+    <h1 class="header">
+        <div class="header-text">歡迎光臨，請輸入帳號密碼</div>
+    </h1>
+    <div class="form">
+        <h3 class="form-title">登入系統</h3>
+        <br>
+        <form action="/signin/" method="POST">
+            帳號 <input type="text" name="account">
+            <br>
+            <br>
+            密碼 <input type="password" name="password">
+            <br>
+            <br>
+            <button class="btn">登入</button>
+        </form>
+    </div>
+    <br>
+    <hr>
+    <div class="form">
+        <h3 class="form-title">計算正整數的平方</h3>
+        <h3>正整數 <input type="text" name="number" id="inputNumber">
+        <br>
+        <br>
+        </h3>
+        <div class="btn-container">
+            <button id="btn" class="btn">計算</button>
+        </div>
+        
+    
+    </div>
+    <script>
+
+        let button = document.querySelector("#btn");
+        button.addEventListener("click", function(){
+           let inputVal = document.querySelector("#inputNumber").value;
+           location.href = "/square/" + inputVal;
+        });
+    </script>
+
+
+</body>
+</html>
