@@ -3,7 +3,7 @@
 ## Install
 This project uses MySQL. Go check them out if you don't have them locally installed.
 
-`https://www.mysql.com/.`
+`https://www.mysql.com/`
 
 ## Content
 ###  Task 3
