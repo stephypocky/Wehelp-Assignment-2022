@@ -16,7 +16,7 @@ insert into member(id, name, username, password, follower_count, time)values (3,
 insert into member(id, name, username, password, follower_count, time)values (4, 'Doris', 'ccc', 'ccc', 450, '2020-01-01 15:35:10');
 insert into member(id, name, username, password, follower_count, time)values (5, 'Eric', 'ddd', 'ddd', 80, '2009-03-03 09:30:00');
 ```
-![](/Users/stephy/Desktop/Wehelp-Assignment-2022/week5/screenshots/Task3_01.png)
+![](week5/Task3_01.png)
 
 2.
 
