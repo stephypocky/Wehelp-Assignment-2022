@@ -65,8 +65,6 @@ def signin():
 
 @app.route("/member/")
 def member():
-    username = request.args.get("username", "N/A")
-    password = request.args.get("password", "N/A")
     mycursor.execute(
         "SELECT member.name, message.content FROM member INNER JOIN message on member.id=message.member_id;")
     myresult = mycursor.fetchall()
