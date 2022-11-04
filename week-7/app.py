@@ -113,13 +113,13 @@ def rename():
     username = session["username"]
     newname = request.get_json()["name"]  # 和前端請求回應JSON格式，{"name": "新的使⽤者姓名"}
     mycursor.execute(
-        'UPDATE member SET name="%s" WHERE username="%s"' % (newname, username))  # 用逗號會報錯誤訊息，改用%、%s用“”包起來
+        "UPDATE member SET name=%s WHERE username=%s", (newname, username))
     mydb.commit()
     true = True
-    if session["name"] == newname:
-        return jsonify({"error": True})
-    else:
+    if "username" in session:
         return jsonify({"ok": True})
+    else:
+        return jsonify({"error": True})
 
 
 @app.route("/error/")

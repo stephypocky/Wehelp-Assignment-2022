@@ -107,10 +107,13 @@
                 .then(function (response) {
                     return response.json()
                 }).then(function (data) {
-                    // document.querySelector("#result").innerHTML=data["data"]["name"]+"("+data["data"]["username"] +")";
-                    document.querySelector("#result").innerHTML = data["data"]["name"] + "(" + inputUsername + ")";
-                }).catch(function(error){
-                    document.querySelector("#result").innerHTML = "查無此人"
+                   if (data["data"]==null){
+                        document.querySelector("#result").innerHTML = "查無此人";
+                    } 
+                    else {
+                        document.querySelector("#result").innerHTML = data["data"]["name"] + "(" + inputUsername + ")";
+                    }
+
                 })
         };
 
