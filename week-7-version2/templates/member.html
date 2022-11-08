@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>member page</title>
+    <link rel="shortcut icon" href="#">
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .header {
+        background-color: rgb(151, 83, 46);
+        margin: 0px;
+        padding: 0px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .header-text {
+        align-items: center;
+        font-size: 40px;
+        color: rgb(248, 251, 254);
+    }
+
+    .form {
+        text-align: center;
+    }
+
+    .form-title {
+        font-size: 30px;
+    }
+
+    .message {
+        text-align: center;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <h1 class="header">
+        <div class="header-text">歡迎光臨，這是會員頁</div>
+    </h1>
+    <br>
+    <form class="message" action="/signout/">
+        {{name}}，歡迎登入系統
+        <br>
+        <br>
+        <a href="/signout/">登出系統</a>
+    </form>
+    </div>
+    <br>
+    <hr>
+    <div class="form">
+        <h3 class="form-title">快來留言吧</h3>
+        <form action="/message/" method="POST">
+            內容 <input type="text" name="content">
+            <br>
+            <br>
+            <button class="btn">送出</button>
+            <br>
+            <br>
+        </form>
+    </div>
+    <hr>
+    <div class="form">
+        <br>
+        {% for content in myresult %}
+        {{content[0]}} : {{content[1]}}
+        <br>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="form">
+        <h3 class="form-title">查詢會員姓名</h3>
+        <input type="text" id="inputUsername"> <button onclick="searchMember()">查詢</button>
+        <br>
+        <div id="result"></div>
+    </div>
+    <br>
+    <hr>
+    <div class="form">
+        <h3 class="form-title">更新我的姓名</h3>
+        <input type="text" id="newname"> <button onclick="modify()">更新</button>
+        <br>
+        <div id="updatedResult"></div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <script>
+
+        function searchMember() {
+            let inputUsername = document.querySelector("#inputUsername").value;
+            fetch("http://127.0.0.1:3000/api/member/?username=" + inputUsername)
+                .then(function (response) {
+                    return response.json()
+                }).then(function (data) {
+                    if (data["data"] == null) {
+                        document.querySelector("#result").innerHTML = "查無此人";
+                    }
+                    else {
+                        document.querySelector("#result").innerHTML = data["data"]["name"] + "(" + inputUsername + ")";
+                    }
+
+                })
+        };
+
+        function modify() {
+            let newname = document.querySelector("#newname").value;
+            fetch("http://127.0.0.1:3000/api/member/", {
+                method: "PATCH",
+                headers: new Headers({ "Content-Type": "application/json" }),
+                body: JSON.stringify({ "name": newname })
+
+            }).then(function (response) {
+                return response.json()
+
+            }).then(function (data) {
+                if ("ok" in data) {
+                    document.querySelector("#updatedResult").innerHTML = "更新成功";
+                }
+                if ("error" in data) {
+                    document.querySelector("#updatedResult").innerHTML = "更新失敗";
+                }
+
+            })
+        };
+
+
+
+    </script>
+
+</body>
+
+</html>
